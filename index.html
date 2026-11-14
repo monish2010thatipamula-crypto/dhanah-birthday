@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Dhanah! ✨ The Ultimate Sister Celebration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@600;700;800&family=Great+Vibes&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Full Screen Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- MIDNIGHT STARRY SKY & FIREWORKS FULLSCREEN OVERLAY -->
+  <div id="midnight-fireworks-modal" class="midnight-sky-overlay" style="display: none;">
+    <canvas id="fireworks-canvas"></canvas>
+    
+    <div class="midnight-header-overlay">
+      <div class="midnight-badge">✨ MIDNIGHT CELEBRATION ✨</div>
+      <h2 class="midnight-cal-title">Happy Birthday, Dhanah!</h2>
+      <p class="midnight-subtitle">A sky full of stars & fireworks honoring the queen herself!</p>
+      <button id="exit-midnight-btn" class="luxury-pill-btn">
+        <span>✨ Return to Celebration</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Ambient Floating Background Particles & Balloons -->
+  <div class="ambient-sky" id="ambient-sky" aria-hidden="true">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+    <div class="floating-balloon-decor b1">🎈</div>
+    <div class="floating-balloon-decor b2">✨</div>
+    <div class="floating-balloon-decor b3">🎈</div>
+    <div class="floating-balloon-decor b4">💖</div>
+    <div class="floating-balloon-decor b5">🎈</div>
+  </div>
+
+  <!-- TOP MINIMAL NAVIGATION -->
+  <header class="luxury-nav">
+    <div class="nav-brand">
+      <span class="brand-sparkle">✨</span>
+      <span class="brand-title">Dhanah's Day</span>
+    </div>
+
+    <div class="nav-actions">
+      <button id="nav-music-btn" class="nav-btn" title="Toggle Birthday Chimes">
+        <span class="icon" id="nav-music-icon">🎵</span>
+        <span class="label" id="nav-music-label">Birthday Music</span>
+      </button>
+      <button id="nav-confetti-btn" class="nav-btn icon-btn" title="Confetti Shower">
+        🎉
+      </button>
+    </div>
+  </header>
+
+  <!-- ====================================================================
+       1. OPENING LANDING HERO: PURE CALLIGRAPHIC MAJESTY + TWO BUTTONS ONLY
+       ==================================================================== -->
+  <section class="opening-hero" id="opening-hero">
+    <div class="hero-center-box">
+      <div class="hero-pre-title">
+        <span class="leaf-decor">🌿</span>
+        <span>A Royal Tribute To The Best Sister</span>
+        <span class="leaf-decor">🌿</span>
+      </div>
+
+      <!-- Breathtaking Calligraphic Typography -->
+      <h1 class="calligraphy-headline">
+        <span class="calligraphy-script">Happy Birthday</span>
+        <span class="calligraphy-name">Dhanah</span>
+      </h1>
+
+      <p class="hero-tagline">
+        To my wonderful sister—whose kindness illuminates every room and whose laughter makes life unforgettable.
+        Today, the entire world celebrates you!
+      </p>
+
+      <!-- EXACTLY TWO BUTTONS ON START -->
+      <div class="hero-two-buttons">
+        <button id="hero-btn-stories" class="luxury-btn primary-glow">
+          <span class="btn-icon">📱</span>
+          <span class="btn-content">
+            <strong class="btn-main-text">Watch Stories</strong>
+            <small class="btn-sub-text">Instagram-style memories</small>
+          </span>
+        </button>
+
+        <button id="hero-btn-adventures" class="luxury-btn gold-glow">
+          <span class="btn-icon">🗺️</span>
+          <span class="btn-content">
+            <strong class="btn-main-text">10 Adventures</strong>
+            <small class="btn-sub-text">Unlock full surprise experience</small>
+          </span>
+        </button>
+      </div>
+
+      <div class="scroll-down-hint" id="hero-unlocked-hint" style="display: none;">
+        <span>Adventures Unlocked! Scroll down or use the bottom bar</span>
+        <div class="arrow-bounce">↓</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       INSTAGRAM-STYLE STORY VIEWER MODAL
+       ==================================================================== -->
+  <div class="story-modal-overlay" id="story-modal" style="display: none;">
+    <div class="story-phone-shell">
+      <!-- Story Segments Progress Bar -->
+      <div class="story-progress-row">
+        <div class="s-bar"><div class="s-bar-fill" id="sbf-0"></div></div>
+        <div class="s-bar"><div class="s-bar-fill" id="sbf-1"></div></div>
+        <div class="s-bar"><div class="s-bar-fill" id="sbf-2"></div></div>
+        <div class="s-bar"><div class="s-bar-fill" id="sbf-3"></div></div>
+      </div>
+
+      <!-- Story User Bar -->
+      <div class="story-top-user">
+        <div class="user-meta">
+          <div class="user-avatar">👑</div>
+          <div class="user-text">
+            <span class="user-handle">dhanah.vibes</span>
+            <span class="user-time">Birthday Special</span>
+          </div>
+        </div>
+        <button id="close-story-btn" class="story-x-btn" title="Close">✕</button>
+      </div>
+
+      <!-- Story Slides Viewport -->
+      <div class="story-viewport" id="story-viewport">
+        <!-- Slide 0 -->
+        <div class="story-card active" data-index="0">
+          <div class="story-gradient sg-1"></div>
+          <div class="story-body">
+            <div class="story-big-badge">🎉 OFFICIAL NOTICE</div>
+            <div class="story-sticker-icon">👑</div>
+            <h3 class="story-title">Happy Birthday Dhanah!</h3>
+            <p class="story-quote">"A sister like you is rare, radiant, and absolutely irreplaceable."</p>
+            <div class="story-hashtag">#SisterSquad #TheRealQueen</div>
+          </div>
+        </div>
+
+        <!-- Slide 1 -->
+        <div class="story-card" data-index="1">
+          <div class="story-gradient sg-2"></div>
+          <div class="story-body">
+            <div class="story-big-badge">📸 MEMORY SNAPSHOT</div>
+            <div class="story-sticker-icon">👯‍♀️</div>
+            <h3 class="story-title">Unmatched Sibling Bond</h3>
+            <p class="story-quote">From endless late-night giggles to having my back through thick and thin—nobody does sisterhood like you.</p>
+            <div class="story-poll-card">
+              <span class="poll-q">Who is the coolest sibling?</span>
+              <button class="poll-opt selected">Dhanah (100% of the vote! 💖)</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="story-card" data-index="2">
+          <div class="story-gradient sg-3"></div>
+          <div class="story-body">
+            <div class="story-big-badge">✨ SISTER PERK</div>
+            <div class="story-sticker-icon">🎁</div>
+            <h3 class="story-title">Today's Royal Rule</h3>
+            <p class="story-quote">You get the biggest slice of cake, full control of the playlist, and infinite hugs!</p>
+            <div class="story-hashtag">#DhanahRulesToday</div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="story-card" data-index="3">
+          <div class="story-gradient sg-4"></div>
+          <div class="story-body">
+            <div class="story-big-badge">🌟 HEARTFELT WISH</div>
+            <div class="story-sticker-icon">🥂</div>
+            <h3 class="story-title">Here's To Your Dreams!</h3>
+            <p class="story-quote">May your year ahead be blessed with massive triumphs, good health, and joyful moments.</p>
+            <button class="story-react-heart" id="story-heart-trigger">Send Hugs ❤️</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Touch / Click zones -->
+      <div class="story-tap-left" id="story-tap-prev"></div>
+      <div class="story-tap-right" id="story-tap-next"></div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       THE 10 ADVENTURES CONTAINER
+       (Only made visible when user clicks "10 Adventures")
+       ==================================================================== -->
+  <div id="adventures-container" class="adventures-wrapper" style="display: none;">
+
+    <!-- FLOATING CHAPTER PROGRESS DOCK (#10) -->
+    <nav class="floating-journey-dock" id="journey-dock">
+      <div class="dock-content">
+        <div class="dock-meta">
+          <span class="dock-step-num" id="dock-step-num">Chapter 1 of 8</span>
+          <span class="dock-step-title" id="dock-step-title">🎈 The Welcome</span>
+        </div>
+        <div class="dock-track">
+          <div class="dock-bar-fill" id="dock-bar-fill" style="width: 12.5%;"></div>
+        </div>
+        <div class="dock-nav-btns">
+          <button id="dock-prev-btn" class="dock-arrow-btn" title="Previous" disabled>‹</button>
+          <button id="dock-next-btn" class="dock-arrow-btn highlight" title="Next">Next Chapter ›</button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="adventures-main">
+
+      <!-- ADVENTURE 1: COUNTDOWN TO MIDNIGHT & STARRY SKY (#4) -->
+      <section id="sec-countdown" class="adventure-section">
+        <div class="section-gold-badge">Adventure 1 • Idea #4</div>
+        <h2 class="adventure-heading">The Midnight Starry Sky Countdown</h2>
+        <p class="adventure-sub">Watch the clock tick to midnight—or trigger the dark cosmic sky with fireworks right now!</p>
+
+        <div class="luxury-card countdown-luxury-card">
+          <div class="clock-display">
+            <div class="clock-col">
+              <div class="clock-digit" id="timer-days">00</div>
+              <span class="clock-lbl">Days</span>
+            </div>
+            <div class="clock-sep">:</div>
+            <div class="clock-col">
+              <div class="clock-digit" id="timer-hours">00</div>
+              <span class="clock-lbl">Hours</span>
+            </div>
+            <div class="clock-sep">:</div>
+            <div class="clock-col">
+              <div class="clock-digit" id="timer-minutes">00</div>
+              <span class="clock-lbl">Minutes</span>
+            </div>
+            <div class="clock-sep">:</div>
+            <div class="clock-col">
+              <div class="clock-digit" id="timer-seconds">00</div>
+              <span class="clock-lbl">Seconds</span>
+            </div>
+          </div>
+
+          <p class="countdown-caption" id="countdown-caption">
+            ✨ Ticking down toward the golden hour of midnight!
+          </p>
+
+          <button id="trigger-midnight-btn" class="midnight-launch-btn">
+            🎆 Launch Midnight Sky & Fireworks Show
+          </button>
+        </div>
+      </section>
+
+      <!-- ADVENTURE 2: MUSIC-POWERED VISUALIZER (#8) -->
+      <section id="sec-visualizer" class="adventure-section">
+        <div class="section-gold-badge">Adventure 2 • Idea #8</div>
+        <h2 class="adventure-heading">Audio-Reactive Birthday Symphony</h2>
+        <p class="adventure-sub">Listen to the custom synthesized bell-box rendition of "Happy Birthday" with real-time reactive neon frequency waves.</p>
+
+        <div class="luxury-card visualizer-card">
+          <div class="canvas-screen-box">
+            <canvas id="audio-visualizer-canvas"></canvas>
+            <div class="screen-prompt-overlay" id="visualizer-prompt">
+              <span class="music-note-float">🎶</span>
+              <p>Click "Play Birthday Tune" to ignite the reactive audio canvas!</p>
+            </div>
+          </div>
+
+          <div class="visualizer-bar-controls">
+            <button id="viz-toggle-btn" class="luxury-btn primary-glow">
+              <span id="viz-btn-icon">▶️</span>
+              <span id="viz-btn-label">Play Birthday Tune</span>
+            </button>
+            <div class="viz-status-tag">
+              <span class="status-pip" id="viz-status-pip"></span>
+              <span id="viz-status-text">Web Audio Engine: Ready</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ADVENTURE 3: INTERACTIVE CAKE & MIC BREATH SENSOR (#3) -->
+      <section id="sec-cake" class="adventure-section">
+        <div class="section-gold-badge">Adventure 3 • Idea #3</div>
+        <h2 class="adventure-heading">Make a Wish & Blow The Candles</h2>
+        <p class="adventure-sub">Blow directly into your device microphone or click to extinguish the candles with realistic smoke and fanfare!</p>
+
+        <div class="luxury-card cake-luxury-card">
+          <!-- Elegant Cake Graphic -->
+          <div class="cake-stage-box" id="cake-clickable-area" title="Click anywhere to blow candles!">
+            <div class="candles-rack">
+              <div class="candle-stick c1">
+                <div class="flame-aura"></div>
+                <div class="flame-tear"></div>
+                <div class="smoke-trail"></div>
+                <div class="candle-wick"></div>
+                <div class="candle-body"></div>
+              </div>
+              <div class="candle-stick c2">
+                <div class="flame-aura"></div>
+                <div class="flame-tear"></div>
+                <div class="smoke-trail"></div>
+                <div class="candle-wick"></div>
+                <div class="candle-body"></div>
+              </div>
+              <div class="candle-stick c3">
+                <div class="flame-aura"></div>
+                <div class="flame-tear"></div>
+                <div class="smoke-trail"></div>
+                <div class="candle-wick"></div>
+                <div class="candle-body"></div>
+              </div>
+            </div>
+
+            <!-- Hand-Crafted Multi-Tier Cake -->
+            <div class="cake-tier tier-upper">
+              <div class="frosting-pearls"></div>
+              <div class="strawberry-decor">🍓 ✨ 🍓</div>
+            </div>
+            <div class="cake-tier tier-lower">
+              <div class="frosting-ribbon"></div>
+              <div class="cream-fluting"></div>
+            </div>
+            <div class="gold-serving-tray"></div>
+          </div>
+
+          <!-- Controls: Mic vs Click -->
+          <div class="cake-control-panel">
+            <div class="mic-toggle-row">
+              <button id="mic-blow-btn" class="mic-pill-btn">
+                <span class="mic-icon">🎙️</span>
+                <span id="mic-pill-label">Enable Mic to Blow</span>
+              </button>
+              <div class="mic-sensor-bar" id="mic-sensor-bar" style="display: none;">
+                <span class="sensor-title">Breath Sensor:</span>
+                <div class="sensor-track">
+                  <div class="sensor-fill" id="sensor-fill"></div>
+                </div>
+              </div>
+            </div>
+
+            <p class="cake-prompt-text" id="cake-prompt-text">
+              🕯️ <strong>3 Candles Lit:</strong> Blow into your mic or click below!
+            </p>
+
+            <div class="cake-buttons-row">
+              <button id="blow-cake-btn" class="luxury-btn primary-glow">
+                💨 Blow Candles (Click)
+              </button>
+              <button id="relight-cake-btn" class="luxury-btn gold-glow" style="display: none;">
+                ✨ Relight Candles
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ADVENTURE 4: SISTERHOOD PERSONALITY QUIZ (#5) -->
+      <section id="sec-quiz" class="adventure-section">
+        <div class="section-gold-badge">Adventure 4 • Idea #5</div>
+        <h2 class="adventure-heading">The "How Well Do You Know Dhanah?" Quiz</h2>
+        <p class="adventure-sub">Test your sibling knowledge with 5 fun questions and claim your official Sisterhood Diploma!</p>
+
+        <div class="luxury-card quiz-card" id="quiz-card-box">
+          <div class="quiz-top-row">
+            <span class="quiz-q-counter" id="quiz-counter">Question 1 of 5</span>
+            <span class="quiz-score-chip" id="quiz-score-chip">Score: 0 / 5</span>
+          </div>
+
+          <div class="quiz-body-area" id="quiz-body-area">
+            <h3 class="quiz-q-title" id="quiz-q-text">Loading question...</h3>
+            <div class="quiz-choices" id="quiz-choices"></div>
+            <div class="quiz-feedback" id="quiz-feedback" style="display: none;"></div>
+          </div>
+
+          <!-- Completion Diploma -->
+          <div class="quiz-diploma-view" id="quiz-diploma-view" style="display: none;">
+            <div class="diploma-trophy">🏆</div>
+            <h3 class="diploma-title">Sister of the Century!</h3>
+            <p class="diploma-subtitle">You understand Dhanah's iconic spirit to perfection.</p>
+            <div class="diploma-certificate">
+              <div class="diploma-crest">⚜️ OFFICIAL SISTERHOOD CITATION ⚜️</div>
+              <div class="diploma-name">Awarded To Dhanah & Sibling</div>
+              <div class="diploma-statement">Certified for infinite loyalty, shared snacks, and unconditional love.</div>
+              <div class="diploma-stamp">⭐ 100% BOND VERIFIED ⭐</div>
+            </div>
+            <button id="retake-quiz-btn" class="luxury-pill-btn" style="margin-top: 24px;">
+              🔄 Retake Quiz
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ADVENTURE 5: SISTERHOOD PHOTO CAROUSEL (#2) -->
+      <section id="sec-carousel" class="adventure-section">
+        <div class="section-gold-badge">Adventure 5 • Idea #2</div>
+        <h2 class="adventure-heading">Sisterhood Memories Carousel</h2>
+        <p class="adventure-sub">Swipe through favorite moments! Click "Upload Real Photo" to drop in real memories of Dhanah.</p>
+
+        <div class="carousel-container">
+          <button class="carousel-nav-btn prev" id="car-prev" aria-label="Previous">‹</button>
+          
+          <div class="carousel-snap-track" id="car-track">
+            <!-- Slide 1 -->
+            <div class="carousel-item" data-id="1">
+              <div class="carousel-inner-card">
+                <div class="photo-display-box">
+                  <div class="art-backdrop bg-glow-rose">
+                    <span class="art-icon">🌸</span>
+                    <div class="art-caption-text">Smiles & Sunshine</div>
+                  </div>
+                  <img class="real-custom-img" id="car-img-1" alt="Sister memory 1" style="display:none;">
+                  <label class="photo-upload-pill">
+                    📷 Upload Real Photo
+                    <input type="file" accept="image/*" class="photo-file-selector" data-target="car-img-1">
+                  </label>
+                </div>
+                <div class="card-caption">
+                  <h4>Radiant Smiles & Good Times</h4>
+                  <p>Every single day feels brighter with your infectious laughter and energy.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-item" data-id="2">
+              <div class="carousel-inner-card">
+                <div class="photo-display-box">
+                  <div class="art-backdrop bg-glow-blue">
+                    <span class="art-icon">👯‍♀️</span>
+                    <div class="art-caption-text">Partners in Crime</div>
+                  </div>
+                  <img class="real-custom-img" id="car-img-2" alt="Sister memory 2" style="display:none;">
+                  <label class="photo-upload-pill">
+                    📷 Upload Real Photo
+                    <input type="file" accept="image/*" class="photo-file-selector" data-target="car-img-2">
+                  </label>
+                </div>
+                <div class="card-caption">
+                  <h4>Late Night Shenanigans</h4>
+                  <p>From secret snack runs to hilarious inside jokes nobody else understands.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-item" data-id="3">
+              <div class="carousel-inner-card">
+                <div class="photo-display-box">
+                  <div class="art-backdrop bg-glow-purple">
+                    <span class="art-icon">👑</span>
+                    <div class="art-caption-text">Queen Dhanah</div>
+                  </div>
+                  <img class="real-custom-img" id="car-img-3" alt="Sister memory 3" style="display:none;">
+                  <label class="photo-upload-pill">
+                    📷 Upload Real Photo
+                    <input type="file" accept="image/*" class="photo-file-selector" data-target="car-img-3">
+                  </label>
+                </div>
+                <div class="card-caption">
+                  <h4>Elegance & Ambition</h4>
+                  <p>Watching you achieve your goals and follow your dreams makes me so proud.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="carousel-item" data-id="4">
+              <div class="carousel-inner-card">
+                <div class="photo-display-box">
+                  <div class="art-backdrop bg-glow-gold">
+                    <span class="art-icon">🎂</span>
+                    <div class="art-caption-text">Cheers to You!</div>
+                  </div>
+                  <img class="real-custom-img" id="car-img-4" alt="Sister memory 4" style="display:none;">
+                  <label class="photo-upload-pill">
+                    📷 Upload Real Photo
+                    <input type="file" accept="image/*" class="photo-file-selector" data-target="car-img-4">
+                  </label>
+                </div>
+                <div class="card-caption">
+                  <h4>A Spectacular Year Ahead</h4>
+                  <p>May this new chapter bring you peace, boundless joy, and extraordinary moments.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="carousel-nav-btn next" id="car-next" aria-label="Next">›</button>
+        </div>
+
+        <div class="carousel-pagination" id="car-dots">
+          <span class="pag-dot active" data-index="0"></span>
+          <span class="pag-dot" data-index="1"></span>
+          <span class="pag-dot" data-index="2"></span>
+          <span class="pag-dot" data-index="3"></span>
+        </div>
+      </section>
+
+      <!-- ADVENTURE 6: 3D ROTATING MYSTERY PRESENT (#7) -->
+      <section id="sec-gift" class="adventure-section">
+        <div class="section-gold-badge">Adventure 6 • Idea #7</div>
+        <h2 class="adventure-heading">The 3D Mystery Present</h2>
+        <p class="adventure-sub">A genuine 3D gift cube rotating in perspective. Tap the box to pop the 3D lid and reveal the VIP Sister Pass!</p>
+
+        <div class="gift-viewport-3d">
+          <div class="gift-cube-stage" id="gift-cube-stage" title="Click to open the gift box!">
+            <div class="cube-assembly" id="cube-assembly">
+              <!-- 3D Lid with Bow -->
+              <div class="cube-lid-3d" id="cube-lid-3d">
+                <div class="lid-top-face">
+                  <div class="satin-bow">🎀</div>
+                  <div class="ribbon-band-h"></div>
+                  <div class="ribbon-band-v"></div>
+                </div>
+              </div>
+
+              <!-- 3D Body Faces -->
+              <div class="c-face face-front">
+                <div class="ribbon-line-v"></div>
+                <div class="ribbon-line-h"></div>
+              </div>
+              <div class="c-face face-back">
+                <div class="ribbon-line-v"></div>
+                <div class="ribbon-line-h"></div>
+              </div>
+              <div class="c-face face-left">
+                <div class="ribbon-line-v"></div>
+                <div class="ribbon-line-h"></div>
+              </div>
+              <div class="c-face face-right">
+                <div class="ribbon-line-v"></div>
+                <div class="ribbon-line-h"></div>
+              </div>
+              <div class="c-face face-bottom"></div>
+            </div>
+            <div class="cube-drop-shadow"></div>
+          </div>
+
+          <p class="gift-tap-prompt" id="gift-tap-prompt">🎁 Tap the 3D gift box to unlock your surprise!</p>
+
+          <!-- Revealed Sister Perks Voucher -->
+          <div class="revealed-voucher-card" id="revealed-voucher" style="display: none;">
+            <div class="voucher-tag">✨ OFFICIAL BIRTHDAY PASS ✨</div>
+            <h3 class="voucher-title">Dhanah's VIP Sister Voucher</h3>
+            <ul class="voucher-rules">
+              <li>🍰 <strong>All-You-Can-Eat Treat:</strong> Unlimited coffee, dessert, or boba on me!</li>
+              <li>🛋️ <strong>Chores Pass:</strong> Sibling takes over 1 full day of chores upon request.</li>
+              <li>🛡️ <strong>Argument Immunity:</strong> You automatically win any friendly debate today!</li>
+              <li>💖 <strong>Lifelong Sibling Guarantee:</strong> Unconditional love & support forever.</li>
+            </ul>
+            <div class="voucher-barcode">VOUCHER: #1-SISTER-DHANAH-2026</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ADVENTURE 7: A LETTER TO MY SISTER (#6) -->
+      <section id="sec-letter" class="adventure-section">
+        <div class="section-gold-badge">Adventure 7 • Idea #6</div>
+        <h2 class="adventure-heading">A Letter To My Sister</h2>
+        <p class="adventure-sub">Click the golden heart seal to unfold a heartfelt note written specially for you.</p>
+
+        <div class="envelope-presentation">
+          <div class="envelope-3d-box" id="envelope-3d-box">
+            <div class="env-back-plate"></div>
+
+            <!-- Letter Inside -->
+            <div class="env-letter-page" id="env-letter-page">
+              <div class="letter-top-badge">💌 SISTERHOOD FOREVER</div>
+              <h3 class="letter-salutation">Dearest Dhanah,</h3>
+              <div class="letter-paragraphs">
+                <p>
+                  From growing up under the same roof, sharing secret snacks, surviving chaotic family moments,
+                  to watching you bloom into such a graceful, hilarious, and fiercely capable woman—having you
+                  as my sister is one of life’s greatest blessings.
+                </p>
+                <p>
+                  You are my personal hype woman, my favorite confidante, and the only person who can make me laugh
+                  until my stomach hurts over nothing at all. Your warmth and kindness light up every space you enter.
+                </p>
+                <p>
+                  On this birthday, I hope you feel endlessly proud of everything you’ve achieved and excited
+                  for where you're headed. May your year ahead be packed with dream-come-true triumphs, good health,
+                  and sweet surprises.
+                </p>
+                <p class="letter-sign">
+                  Always in your corner,<br>
+                  <span class="calligraphy-sig">Your Loving Sibling 💖</span>
+                </p>
+              </div>
+            </div>
+
+            <!-- 3D Flaps -->
+            <div class="env-side-left"></div>
+            <div class="env-side-right"></div>
+            <div class="env-bottom-fold"></div>
+            <div class="env-top-fold" id="env-top-fold"></div>
+
+            <!-- Golden Heart Wax Seal -->
+            <div class="golden-wax-seal" id="golden-wax-seal">
+              <span>💖</span>
+            </div>
+          </div>
+
+          <p class="seal-hint-text" id="seal-hint-text">Click the golden heart seal to unfold the letter!</p>
+        </div>
+      </section>
+
+      <!-- ADVENTURE 8: GRAND FINALE FIREWORKS & CELEBRATION -->
+      <section id="sec-finale" class="adventure-section finale-section">
+        <div class="finale-card luxury-card">
+          <span class="finale-sparkle-icon">👑</span>
+          <h2 class="adventure-heading">To The Queen of Our Hearts!</h2>
+          <p class="adventure-sub">May all your wishes come true today and every single day that follows.</p>
+
+          <div class="finale-buttons">
+            <button id="finale-fireworks-btn" class="luxury-btn primary-glow">
+              🎆 Launch Midnight Fireworks Show
+            </button>
+            <button id="finale-confetti-btn" class="luxury-btn gold-glow">
+              🎉 Massive Confetti Explosion
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="luxury-footer">
+    <p>Crafted with endless admiration & love for <strong>Dhanah</strong> ✨</p>
+    <p class="footer-sub">Happy Birthday! May your day be as extraordinary as you are.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
